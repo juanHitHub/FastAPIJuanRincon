@@ -17,9 +17,9 @@ app = FastAPI(
 version="1.0.0",
 
 contact={
-    "name": "Brian Dev - Equipo Backend",
-    "url": "http://gihub.com/briandevitaok/ecommerce-fastapi",
-    "email": "contacto@gmail.com"
+      "name": "Juan Manuel Rincón Barrón",
+    "url": "https://github.com/juanHitHub/FastAPIJuanRincon.git",
+    "email": "juanm.rincon.ext@grupocox.com"
 },
 
 license_info= {
