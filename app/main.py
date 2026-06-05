@@ -1,6 +1,7 @@
 from fastapi import FastAPI
-from api.v1.api import api_router 
-
+import uvicorn
+from app.api.v1.api import api_router 
+import os
 
 
 app = FastAPI(
@@ -30,7 +31,9 @@ license_info= {
 )
 
 
-
+if __name__== '__main__':
+    port = int(os.environ.get("PORT",8000))
+    uvicorn.run("main:app",host="0.0.0.0",port=port)
 
 app.include_router(api_router, prefix="/api/v1")
 

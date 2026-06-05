@@ -1,14 +1,17 @@
+from sqlalchemy import create_engine
+from app.core.config import settings
+
 from logging.config import fileConfig
-from models.categoria import Categoria
+from app.models.categoria import Categoria
 
-from models.pedidos import Pedido
-from models.pedidos import Carrito
-from models.pedidos import ItemCarrito
-from models.pedidos import DetallePedido
+from app.models.pedidos import Pedido
+from app.models.pedidos import Carrito
+from app.models.pedidos import ItemCarrito
+from app.models.pedidos import DetallePedido
 
-from models.producto import Producto
-from models.usuario import Usuario
-from db.database import Base, engine 
+from app.models.producto import Producto
+from app.models.usuario import Usuario
+from app.db.database import Base, engine 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
@@ -60,17 +63,17 @@ def run_migrations_offline() -> None:
 
 
 def run_migrations_online() -> None:
-    """Run migrations in 'online' mode.
+    connectable = create_engine(settings.DATABASE_URL)
 
-    In this scenario we need to create an Engine
-    and associate a connection with the context.
+    with connectable.connect() as connection:
+        context.configure(
+            connection=connection,
+            target_metadata=target_metadata
+        )
 
-    """
-    connectable = engine_from_config(
-        config.get_section(config.config_ini_section, {}),
-        prefix="sqlalchemy.",
-        poolclass=pool.NullPool,
-    )
+        with context.begin_transaction():
+            context.run_migrations()
+
 
     with connectable.connect() as connection:
         context.configure(

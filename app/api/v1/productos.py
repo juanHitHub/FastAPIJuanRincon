@@ -1,10 +1,10 @@
 from fastapi import APIRouter
 from fastapi import  Depends, HTTPException
 from sqlalchemy.orm import Session
-from schemas.producto import *
-from deps.deps import get_db
-from deps.deps import  require_admin
-from crud.producto import *
+from app.schemas.producto import *
+from app.deps.deps import get_db
+from app.deps.deps import  require_admin
+from app.crud.producto import *
 
 api_router = APIRouter()
 
@@ -26,7 +26,7 @@ def agregar_producto(producto: ProductoCreate, db: Session = Depends(get_db)):
 
 @api_router.put("/productos/{id}", response_model=ProductoCreate)
 def actualizar_producto(producto_id: int, datos: ProductoCreate, db: Session = Depends(get_db)):
-    producto = actualizar_producto(db, producto_id, datos)
+    producto = update_producto(db, producto_id, datos)
     if not producto:
         raise HTTPException(status_code=404, detail="Producto no encontrado")
     return producto
@@ -34,7 +34,7 @@ def actualizar_producto(producto_id: int, datos: ProductoCreate, db: Session = D
 
 @api_router.delete("/productos/{id}")
 def eliminar_producto(producto_id: int, db:Session = Depends(get_db)):
-    producto = eliminar_producto(db, producto_id)
+    producto = delete_producto(db, producto_id)
 
     if not producto:
         raise HTTPException(status_code=404, detail="Producto no encontrado")

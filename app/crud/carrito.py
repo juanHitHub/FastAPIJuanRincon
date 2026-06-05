@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from models.pedidos import Carrito, ItemCarrito
+from app.models.pedidos import Carrito, ItemCarrito
 
 
 

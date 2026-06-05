@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session 
-from models.producto import Producto
-from schemas.producto import ProductoCreate
+from app.models.producto import Producto
+from app.schemas.producto import ProductoCreate
 
 
 
@@ -27,17 +27,17 @@ def obtener_producto(db:Session, producto_id: int ):
     return db.query(Producto).filter(Producto.id == producto_id).first()
 
 
-def actualizar_producto(db:Session, producto_id: int, datos:ProductoCreate):
+def update_producto(db:Session, producto_id: int, datos:ProductoCreate):
     producto = obtener_producto(db, producto_id)
 
     if producto:
         for key, value in datos.dict().items():
-            satattr(producto, key, value)
+            setattr(producto, key, value)
         db.commit()
         db.refresh(producto)
     return producto
 
-def eliminar_producto(db:Session, producto_id: int):
+def delete_producto(db:Session, producto_id: int):
     producto = obtener_producto(db, producto_id)
 
     if producto:

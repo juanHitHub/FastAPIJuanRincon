@@ -1,7 +1,7 @@
 
 from sqlalchemy.orm import Session 
-from models.categoria import  Categoria
-from schemas.categoria import  CategoriaCreate
+from app.models.categoria import  Categoria
+from app.schemas.categoria import  CategoriaCreate
 
 
 

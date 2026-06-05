@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session 
-from models.producto import Producto
-from models.pedidos import Carrito, DetallePedido, Pedido
+from app.models.producto import Producto
+from app.models.pedidos import Carrito, DetallePedido, Pedido
 
 
 

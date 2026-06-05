@@ -11,7 +11,7 @@ class Setting(BaseSettings):
 
 
     class Config:
-        env_file = ".env"
+        env_file = "app/.env"
 
 
 settings = Setting()

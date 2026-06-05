@@ -1,12 +1,12 @@
-from schemas.usuario import UsuarioResponse, UsuarioCreate
-from schemas.token import Token
-from crud.usuario import *
+from app.schemas.usuario import UsuarioResponse, UsuarioCreate
+from app.schemas.token import Token
+from app.crud.usuario import *
 from fastapi import APIRouter
 from fastapi import Depends, HTTPException, status
-from deps.deps import get_db, require_admin, get_current_user
+from app.deps.deps import get_db, require_admin, get_current_user
 from sqlalchemy.orm import Session
 from fastapi.security import OAuth2PasswordRequestForm
-from core.security import verify_password, crear_token
+from app.core.security import verify_password, crear_token
 
 
 

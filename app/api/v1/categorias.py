@@ -2,9 +2,9 @@
 from fastapi import APIRouter
 from fastapi import  Depends
 from sqlalchemy.orm import Session
-from schemas.categoria import CategoriaResponse, CategoriaCreate
-from deps.deps import get_db
-from crud.categoria import *
+from app.schemas.categoria import CategoriaResponse, CategoriaCreate
+from app.deps.deps import get_db
+from app.crud.categoria import *
 
 
 

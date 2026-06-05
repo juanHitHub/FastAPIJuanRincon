@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session 
-from models.usuario import  Usuario
-from schemas.usuario import UsuarioCreate
-from core.security import hash_password
+from app.models.usuario import  Usuario
+from app.schemas.usuario import UsuarioCreate
+from app.core.security import hash_password
 from sqlalchemy import or_
 
 
@@ -16,6 +16,10 @@ def obtener_usuario_por_id(db:Session, usuario_id: int ) -> Usuario | None:
 
 
 def crear_usuario(db:Session, usuario: UsuarioCreate) -> Usuario:
+    
+    print(type(usuario.password))
+    print(usuario.password)
+
     existe = db.query(Usuario).filter(
         or_(Usuario.email == usuario.email, Usuario.nombre == usuario.nombre)
     ).first() 

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from crud import carrito as crud_carrito
-from deps.deps import get_db, get_current_user
+from app.crud import carrito as crud_carrito
+from app.deps.deps import get_db, get_current_user
 
 
 api_router = APIRouter()
